@@ -7,7 +7,7 @@ moduleFuel = []
 fuelCounter = 0
 extraFuel = 0
 
-with open(r"D:\Git\AdventOfCode2019\Input.txt", 'r') as dat:
+with open(r"D:\Git\AdventOfCode2019\InputDay1.txt", 'r') as dat:
     for row in dat.readlines():
         lista.append(int(row))
 
