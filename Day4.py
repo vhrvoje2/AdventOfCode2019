@@ -1,24 +1,46 @@
 count = 0
+count2 = 0
 startRange = 353096
 endRange = 843212
 
+listDouble = ['11', '22', '33', '44', '55', '66', '77', '88', '99']
+listTriple = ['111', '222', '333', '444', '555', '666', '777', '888', '999']
 
-def check(x):
-    num = x
-    numOk = True
-    if '11' in str(num) or '22' in str(num) or '33' in str(num) or '44' in str(num) or '55' in str(num) or '66' in str(num) or '77' in str(num) or '88' in str(num) or '99' in str(num):
-        for y in range(0, len(str(num))):
-            try:
-                if int(str(num)[y]) > int(str(num)[y+1]):
-                    numOk = False
-            except:
-                continue
-    else:
-        numOk = False
-    return numOk
+def check(num):
+    for element in listDouble:
+        if element in str(num):
+            for y in range(1, len(str(num))):
+                if int(str(num)[y-1]) > int(str(num)[y]):
+                    return 0
+            return element
+    return 0
 
-""" for x in range(startRange, endRange+1):
-    if check(x):
-        count +=1 """
+for num in range(startRange, endRange):
+    if check(num):
+        count +=1
 
 print("Part 1: " + str(count))
+
+def checkTwo(num):
+    string = str(num)
+    for element in listDouble:
+        if element in string:
+            index = string.index(element)
+            if (string[index-1] != element[0]):
+                try:
+                    if (string[index+2] != element[0]):
+                        for y in range(1, len(string)):
+                            if int(string[y-1]) > int(string[y]):
+                                return 0
+                        return 1
+                except:
+                    for y in range(1, len(string)):
+                        if int(string[y-1]) > int(string[y]):
+                            return 0
+                    return 1
+    return 0
+
+for num in range(startRange, endRange):
+    count2 += checkTwo(num)
+
+print("Part 2: " + str(count2))
